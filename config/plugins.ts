@@ -29,7 +29,7 @@ import { reactClickToComponent } from "vite-plugin-react-click-to-component"
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // 图片优化 
-// import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // 使用 gzip 或者 brotli 来压缩资源js文件 默认gizp      approved: 2025-04-25
 import { compression } from 'vite-plugin-compression2'
@@ -37,20 +37,20 @@ import { compression } from 'vite-plugin-compression2'
 // 模块联邦插件
 // import federation from "@originjs/vite-plugin-federation";
 // 图片压缩
-import viteImagemin from '@vheemstra/vite-plugin-imagemin'  //approved: 重点关注，测试
+// import viteImagemin from '@vheemstra/vite-plugin-imagemin'  //approved: 重点关注，测试
 
 // The minifiers you want to use:
 // @ts-ignore 忽略类型错误
-import imageminMozjpeg from 'imagemin-mozjpeg'
-import imageminPng from 'imagemin-pngquant'
+// import imageminMozjpeg from 'imagemin-mozjpeg'
+// import imageminPng from 'imagemin-pngquant'
 // @ts-ignore 忽略类型错误
-import imageminGif from 'imagemin-gifsicle'
+// import imageminGif from 'imagemin-gifsicle'
 
 // //  @ts-ignore 忽略类型错误  制作webp图片    webp 图片压缩
 // import imageminWebp from 'imagemin-webp'
 
 // @ts-ignore 忽略类型错误  制作avif图片      avif 图片压缩
-import imageminAvif from 'imagemin-avif'
+// import imageminAvif from 'imagemin-avif'
 
 /**
  * 获取 Vite 插件配置
@@ -155,66 +155,68 @@ export default function getVitePlugins(command: string, mode: string): PluginOpt
 
         // 【图片优化】  使用这个插件需要再安装 pnpm add -D sharp  
         //  https://github.com/FatehAK/vite-plugin-image-optimizer
-        // isBuild && ViteImageOptimizer({}),
+        //  这个比较清爽一点，默认配置够用，和viteImagemin二选一
+        isBuild && ViteImageOptimizer(),
 
         // 【图片压缩】 svg由svgr插件处理，避免重复调用。
         //  https://github.com/vheemstra/vite-plugin-imagemin
         //  不过太大的图片一般用CDN引入比较好，也能保证图片的质量，不然测试环境图片于生产环境图片质量不一致
-        isBuild && viteImagemin(
-            {
-                // 压缩图片 【key是文件扩展名,value是压缩插件】
-                plugins: {
-                    jpeg: imageminMozjpeg({
-                        quality: 80,
-                        // 是否创建基线 JPEG 文件。
-                        progressive: true
-                    }),
-                    png: imageminPng({
-                        quality: [0.3, 0.8],
-                        speed: 10,
-                        strip: true,
-                    }),
-                    gif: imageminGif({
-                        // 优化级别 1 - 3
-                        optimizationLevel: 3,
-                        // 颜色数量
-                        colors: 256,
-                        // 隔行扫描
-                        interlaced: true
-                    }),
-                },
-                // 如果图片大小大于原图，则跳过，默认true
-                skipIfLarger: true,
+        //  有些macos系统不支持压缩算饭，imagemin库不维护了！和viteImageOptimizer二选一即可！
+        // isBuild && viteImagemin(
+        //     {
+        //         // 压缩图片 【key是文件扩展名,value是压缩插件】
+        //         plugins: {
+        //             jpeg: imageminMozjpeg({
+        //                 quality: 80,
+        //                 // 是否创建基线 JPEG 文件。
+        //                 progressive: true
+        //             }),
+        //             png: imageminPng({
+        //                 quality: [0.3, 0.8],
+        //                 speed: 10,
+        //                 // 移除此选项，它在macOS上可能导致问题
+        //             }),
+        //             gif: imageminGif({
+        //                 // 优化级别 1 - 3
+        //                 optimizationLevel: 3,
+        //                 // 颜色数量
+        //                 colors: 256,
+        //                 // 隔行扫描
+        //                 interlaced: true
+        //             }),
+        //         },
+        //         // 如果图片大小大于原图，则跳过，默认true
+        //         skipIfLarger: true,
 
-                // 制作avif图片 【key是文件扩展名,value是压缩插件】
-                makeAvif: {
-                    plugins: {
-                        jpeg:imageminAvif({
-                            quality: 70,
-                        }),
-                        png: imageminAvif({
-                            quality: 70,
-                        }),
-                        gif: imageminAvif({
-                            quality: 70,
-                        }),
-                    },
-                    // 自定义图片路径,(这是默认值)  介绍：AVIF是一种现代图像格式，提供比WebP和JPEG更好的压缩率
-                    formatFilePath: (file: string) => `${file}.avif`,
-                    // 如果图片大小大于优化图，则跳过, 有三种可选  false | 'original' | 'optimized' | 'smallest'
-                    skipIfLargerThan: "optimized",
-                },
+        //         // 制作avif图片 【key是文件扩展名,value是压缩插件】
+        //         makeAvif: {
+        //             plugins: {
+        //                 jpeg:imageminAvif({
+        //                     quality: 70,
+        //                 }),
+        //                 png: imageminAvif({
+        //                     quality: 70,
+        //                 }),
+        //                 gif: imageminAvif({
+        //                     quality: 70,
+        //                 }),
+        //             },
+        //             // 自定义图片路径,(这是默认值)  介绍：AVIF是一种现代图像格式，提供比WebP和JPEG更好的压缩率
+        //             formatFilePath: (file: string) => `${file}.avif`,
+        //             // 如果图片大小大于优化图，则跳过, 有三种可选  false | 'original' | 'optimized' | 'smallest'
+        //             skipIfLargerThan: "optimized",
+        //         },
 
-                // 制作webp图片
-                // makeWebp: {
-                //     plugins: {
-                //         jpeg: imageminWebp({
-                //             quality: 80,
-                //         }),
-                //     },
-                // },
-            }
-        ),
+        //         // 制作webp图片
+        //         // makeWebp: {
+        //         //     plugins: {
+        //         //         jpeg: imageminWebp({
+        //         //             quality: 80,
+        //         //         }),
+        //         //     },
+        //         // },
+        //     }
+        // ),
 
         // 【模块联邦】用于 微前端 暂时不在这里体现 @originjs/vite-plugin-federation 插件，
         //  https://github.com/originjs/vite-plugin-federation

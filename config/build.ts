@@ -88,7 +88,7 @@ export default function buildConfig(command: string, mode: string): BuildOptions
                 // - 这就是为什么你的代码中即使设置了experimentalMinChunkSize: 1024，仍然会有很多小体积的独立chunks，因为manualChunks函数已经为它们分配了不同的chunk名称。
                 experimentalMinChunkSize: 1024, //实际不生效
 
-            
+
 
                 // 使用方式2：按照依赖大小动态决定
                 // getModuleInfo(id) 获取模块信息
@@ -103,15 +103,15 @@ export default function buildConfig(command: string, mode: string): BuildOptions
                 manualChunks: (id, { getModuleInfo }) => {
                     if (id.includes('node_modules')) {
                         // * 「具名单独打包模块」 定义需要单独打包的依赖包配置(可选)
-                        const vendorPackages = ['antd', 'react', 'axios'];
+                        // const vendorPackages = ['antd', 'react', 'axios'];
 
-                        for (const vendor of vendorPackages) {
-                            if (id.includes(vendor)) { 
-                                return `vendor-${vendor}`;
-                            }
-                        }
+                        // for (const vendor of vendorPackages) {
+                        //     if (id.includes(vendor)) { 
+                        //         return `vendor-${vendor}`;
+                        //     }
+                        // }
 
-                        // * 「超过阈值单独打包」 递归获取模块及其依赖的大小，模块大小超过阈值（例如35KB），则单独分割。(可选)
+                        // * 「超过阈值单独打包」 递归获取模块及其依赖的大小，模块大小超过阈值（例如50KB），则单独分割。(可选)
                         // 设置阈值，可监控打包后的chunk数量和大小分布，根据实际情况微调阈值
                         const getModuleSize = (id: string) => {
                             const info = getModuleInfo(id);
@@ -125,14 +125,17 @@ export default function buildConfig(command: string, mode: string): BuildOptions
 
                         // 这里获取的模块体积是打包前包的完整体积（包括依赖）
                         const moduleSize = getModuleSize(id);
-                        if (moduleSize > (35 * 1024)) {
+                        if (moduleSize > (55 * 1024)) {
                             const packageName = id.toString().split('node_modules/')[1].split('/')[0];
                             return `vendor-size-${moduleSize}-${packageName}`;
                         }
 
                         // 这里如果想要合并的话，返回一个固定字符串名词即可！  例如：vendor-common
                         // * 「公共vendor」 小于阈值的模块归入公共vendor
-                        return 'vendor-common';
+                        const chunkHash = Math.abs(
+                            id.split('').reduce((hash, char) => (hash * 31 + char.charCodeAt(0)) & 0xffffffff, 0)
+                        );
+                        return 'vendor-common' + (chunkHash % 3);
                     }
                 }
 
