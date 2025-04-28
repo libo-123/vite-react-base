@@ -1,0 +1,84 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: 项目私有开发规范
+globs: 
+alwaysApply: true
+---
+
+## 项目简介
+
+介绍：一套基于AI编程范式的管理系统vite模板！
+主要技术栈及版本：React19 + Typscript5 + react-route-domV7 + ahook3.0  ,跟多引入的包参考 [package.json](mdc:package.json)
+
+## 目录结构
+
+├── public/                      # 公共资源目录
+├── src/                         # 源代码目录
+│   ├── assets/                  # 静态资源目录
+│   ├── components/              # 公共组件目录
+│   ├── constants/               # 常量定义目录
+│   ├── hooks/                   # 自定义hooks
+│   ├── i18n.ts                  # 国际化配置文件
+│   ├── layouts/                 # 布局组件目录
+│   ├── locales/                 # 国际化语言包目录
+│   ├── pages/                   # 页面组件目录
+│   ├── request/                 # 请求相关目录
+│   ├── routes/                  # 路由配置目录
+│   ├── store/                   # 状态管理目录
+│   ├── types/                   # TypeScript类型定义目录
+│   ├── utils/                   # 工具函数目录
+│   ├── App.tsx                  # 根组件
+│   ├── main.tsx                 # 入口文件
+│   ├── reset.scss               # 重置样式
+│   ├── vite-env.d.ts            # Vite环境声明文件
+│   └── auto-imports.d.ts        # 自动导入声明文件
+├── config/                      # 配置文件目录
+├── auto-imports.d.ts            # 自动导入声明文件
+├── Dockerfile                   # Docker构建文件
+├── README.md                    # 项目说明文档
+├── .eslintrc-auto-import.json   # ESLint自动导入配置
+├── .gitignore                   # Git忽略配置
+├── .nvmrc                       # Node版本配置
+├── eslint.config.js             # ESLint配置
+├── index.html                   # HTML入口文件
+├── nginx.conf                   # Nginx配置文件
+├── package.json                 # 项目依赖配置
+├── pnpm-lock.yaml               # pnpm锁文件
+├── tsconfig.app.json            # 应用相关TS配置
+├── tsconfig.json                # TypeScript配置
+├── tsconfig.node.json           # Node相关TS配置
+└── vite.config.ts               # Vite配置文件
+
+## 项目入口
+- 项目的入口文件是 @src/main.tsx，它引入全局样式并渲染根组件
+- 根组件 @src/App.tsx 处理路由配置和全局状态初始化
+
+## 样式
+采用的sass
+- 除公共样式外，样式采用 SCSS 模块化方案，如 @src/components/Hello/index.module.scss
+  
+## 组件结构
+
+组件采用以下结构组织：
+
+```
+组件名/
+├── index.tsx        # 组件主文件
+├── index.module.scss # 组件样式
+└── types.ts         # 类型定义(可选)
+```
+
+  
+## 状态管理
+- 全局状态管理使用 Zustand 进行管理，位于 @src/store/ 目录
+
+## 其他
+**不要删除 vite.config.ts 的注释，优先级最高！**
+**项目中unplugin-auto-import/vite已使用，开发前请阅读 [auto-imports.d.ts](mdc:src/auto-imports.d.ts) 文件，以避免不必要的导入！**
+
+
+

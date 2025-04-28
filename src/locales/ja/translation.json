@@ -1,0 +1,46 @@
+{
+  "common": {
+    "hello": "こんにちは",
+    "welcome": "アプリケーションへようこそ",
+    "copyright": "Copyright © 2025 ヒマラヤ"
+  },
+  "header": {
+    "home": "ホーム",
+    "about": "私たちについて",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "logo": "ヒマラヤ"
+  },
+  "theme": {
+    "pickColor": "テーマカラーを選択"
+  },
+  "language": {
+    "switchLanguage": "言語を切り替える"
+  },
+  "pages": {
+    "home": {
+      "title": "ユーザー情報",
+      "noData": "ユーザー情報がありません",
+      "id": "ID",
+      "name": "名前",
+      "avatar": "アバター",
+      "email": "メール",
+      "phone": "電話番号",
+      "role": "役割",
+      "department": "部署",
+      "position": "ポジション",
+      "permissions": "権限",
+      "createTime": "作成時間",
+      "lastLoginTime": "最終ログイン時間"
+    },
+    "about": {
+      "title": "詳細"
+    },
+    "notFound": {
+      "code": "404",
+      "title": "ページが見つかりません",
+      "description": "申し訳ありませんが、お探しのページは存在しないか、削除されました",
+      "button": "ホームに戻る"
+    }
+  }
+} 

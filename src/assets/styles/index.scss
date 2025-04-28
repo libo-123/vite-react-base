@@ -1,0 +1,12 @@
+
+/*
+* @import ：已经在sass中被弃用，可能导致命名冲突和重复加载。「被弃用」
+* @use ：将文件内容导入到当前文件的局部作用域，命名空间访问变量/函数，如namespace.$variable 
+* @forward ：将导入文件中的所有内容重新导出，使它们对导入当前文件的文件可用
+*/
+
+/**
+* 使用方法 在组件中导入   @use '@/assets/styles/index.scss' as *;
+*/
+@forward './global_variables.scss';
+@forward './global.scss';

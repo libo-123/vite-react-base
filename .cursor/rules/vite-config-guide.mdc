@@ -1,0 +1,62 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Vite 配置详解
+
+## 主配置文件
+
+主配置文件 [vite.config.ts](mdc:vite.config.ts) 采用模块化设计：
+
+```typescript
+import { defineConfig, loadEnv } from 'vite'
+import path from 'path'
+import getVitePlugins from './config/plugins'
+import buildConfig from './config/build'
+import cssConfig from './config/css'
+```
+
+**重要事项**: 不要删除 vite.config.ts 中的注释，它们提供了重要的配置说明！
+
+## 配置模块
+
+配置被拆分为三个主要模块：
+
+### 1. 插件配置
+
+[config/plugins.ts](mdc:config/plugins.ts) 包含所有Vite插件配置：
+
+### 2. 构建配置
+
+[config/build.ts](mdc:config/build.ts) 定义了构建过程的配置：
+
+- 输出目录和资源处理
+- 分块策略
+- 压缩选项
+- 各环境特定配置
+
+### 3. CSS配置
+
+[config/css.ts](mdc:config/css.ts) 处理样式相关配置：
+
+- 预处理器选项
+- CSS模块化配置
+- PostCSS插件配置
+
+## 多环境支持
+
+系统支持多环境配置，通过环境变量文件区分：
+
+- `.env` - 基础配置
+- `.env.development` - 开发环境
+- `.env.test` - 测试环境
+- `.env.production` - 生产环境
+
+环境变量通过 `loadEnv` 加载：
+
+```typescript
+const currentEnv = loadEnv(mode, process.cwd())
+```
+
+并可在配置中使用：`currentEnv.VITE_BASE_URL`

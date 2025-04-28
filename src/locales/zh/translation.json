@@ -1,0 +1,88 @@
+{
+  "common": {
+    "hello": "你好",
+    "welcome": "欢迎来到我们的应用",
+    "copyright": "Copyright © 2025 喜马拉雅"
+  },
+  "header": {
+    "home": "首页",
+    "about": "关于",
+    "login": "登录",
+    "logout": "退出",
+    "logo": "喜马拉雅"
+  },
+  "theme": {
+    "pickColor": "选择主题色"
+  },
+  "language": {
+    "switchLanguage": "切换语言"
+  },
+  "pages": {
+    "home": {
+      "title": "用户信息",
+      "description": "您可以在此页面查看和管理您的个人信息以及项目统计数据",
+      "noData": "暂无用户信息",
+      "id": "ID",
+      "name": "姓名",
+      "avatar": "头像",
+      "email": "邮箱",
+      "phone": "电话",
+      "role": "角色",
+      "department": "部门",
+      "position": "职位",
+      "permissions": "权限",
+      "createTime": "创建时间",
+      "lastLoginTime": "最后登录时间",
+      "stats": {
+        "projects": "项目总数",
+        "tasks": "任务总数",
+        "completed": "已完成",
+        "performance": "绩效评分"
+      }
+    },
+    "about": {
+      "title": "关于我们",
+      "introduction": "公司介绍",
+      "introText": "喜马拉雅成立于2012年，是中国领先的音频分享平台，致力于为用户提供高质量的音频内容和优质的听书体验。",
+      "vision": "我们的愿景",
+      "visionText": "成为全球最大的中文有声内容平台，让所有人享受高质量的音频内容。",
+      "mission": "我们的使命",
+      "missionText": "让优质的声音内容触达每一个人，丰富人们的精神世界。",
+      "history": "发展历程",
+      "historyItems": [
+        {
+          "year": "2012",
+          "event": "喜马拉雅FM正式成立"
+        },
+        {
+          "year": "2014",
+          "event": "用户数突破5000万"
+        },
+        {
+          "year": "2016",
+          "event": "获得D轮融资，估值超过30亿美元"
+        },
+        {
+          "year": "2018",
+          "event": "月活跃用户突破1亿"
+        },
+        {
+          "year": "2022",
+          "event": "平台内容总量突破1亿小时"
+        }
+      ],
+      "team": "核心团队",
+      "teamText": "我们的团队由行业内顶尖的专业人士组成，他们在音频内容、产品设计和技术创新方面拥有丰富经验。",
+      "contact": "联系我们",
+      "address": "上海市浦东新区丹桂路899号",
+      "email": "contact@ximalaya.com",
+      "phone": "400-838-8888"
+    },
+    "notFound": {
+      "code": "404",
+      "title": "页面未找到",
+      "description": "抱歉，您访问的页面不存在或已被移除",
+      "button": "返回首页"
+    }
+  }
+} 

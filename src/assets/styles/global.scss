@@ -1,0 +1,144 @@
+/**
+* 超出文本省略（不传参数时为单行文本省略） 使用方式：.test{@include text-ellipsis(2);}
+*/
+@mixin text-ellipsis($lineNumber: null) {
+    overflow: hidden;
+
+    @if $lineNumber {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: $lineNumber;
+        -webkit-box-orient: vertical;
+    }
+
+    @else {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+
+/**
+  * 媒体查询 使用方式：.test{@include media-query(small);}
+  */
+@mixin media-query($breakpoint) {
+    @if $breakpoint =='small' {
+        @media (max-width: 576px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='medium' {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='large' {
+        @media (max-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xlarge' {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+}
+
+/**
+ * 滚动条样式 使用方式：.test{@include custom-scrollbar(6px, #f1f1f1, #888);}
+ */
+@mixin custom-scrollbar($width: 6px, $track-color: #f1f1f1, $thumb-color: #888) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+        border-radius: $width / 2;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: darken($thumb-color, 10%);
+    }
+}
+
+/**
+ * 固定宽高比例
+ * 使用方式：@include aspect-ratio(16, 9);
+ */
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    >* {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/**
+ * 三角形绘制
+ * 使用方式：@include triangle(down, 10px, #000);
+ */
+@mixin triangle($direction, $size, $color) {
+    width: 0;
+    height: 0;
+
+    @if $direction =='up' {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+    }
+
+    @else if $direction =='down' {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+    }
+
+    @else if $direction =='left' {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+    }
+
+    @else if $direction =='right' {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+    }
+}
+
+/**
+ * 文本禁止选择 使用方式：.test{@extend %disable-select;}
+ */
+%disable-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/**
+   * 图片响应式处理 使用方式：.test{@extend %responsive-image;}
+   */
+%responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

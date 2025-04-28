@@ -1,0 +1,82 @@
+@use '@/assets/styles/index.scss' as *;
+
+
+/* 页头样式 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  // background: linear-gradient(90deg, $primary-color, $hover-color);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo样式 */
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* 导航样式 */
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+/* 链接样式 */
+.link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.link:hover {
+  color: white;
+}
+
+.link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.link:hover:after {
+  width: 100%;
+}
+
+/* 激活链接样式 */
+.activeLink {
+  composes: link;
+  color: white;
+  font-weight: 600;
+}
+
+.activeLink:after {
+  width: 100%;
+  background-color: white;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .nav {
+    margin-top: 1rem;
+    gap: 1.5rem;
+  }
+} 
