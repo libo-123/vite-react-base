@@ -114,15 +114,18 @@ pnpm run format 格式化
 
 效果如下：
 ⚡vite-plugin-imagemin processed these files:
+
   dist/img/desk_top-Buor6MdA.png            272.39 kB │ 
-   ├─ dist/img/desk_top-Buor6MdA.png         28.39 kB │ -89.58 % │   Cache
-   └─ dist/img/desk_top-Buor6MdA.png.avif     1.11 kB │ -99.59 % │  771 ms
+   - dist/img/desk_top-Buor6MdA.png         28.39 kB │ -89.58 % │   Cache
+   - dist/img/desk_top-Buor6MdA.png.avif     1.11 kB │ -99.59 % │  771 ms
+   
   dist/img/gif_test-D4kGRkBA.gif           3605.65 kB │ 
-   ├─ dist/img/gif_test-D4kGRkBA.gif        753.35 kB │ -79.11 % │   Cache
-   └─ dist/img/gif_test-D4kGRkBA.gif.avif    68.88 kB │ -98.09 % │ 1228 ms
+   - dist/img/gif_test-D4kGRkBA.gif        753.35 kB │ -79.11 % │   Cache
+   - dist/img/gif_test-D4kGRkBA.gif.avif    68.88 kB │ -98.09 % │ 1228 ms
+   - 
   dist/img/test-Dx-WGgb6.jpeg               131.64 kB │ 
-   ├─ dist/img/test-Dx-WGgb6.jpeg            45.62 kB │ -65.34 % │   Cache
-   └─ dist/img/test-Dx-WGgb6.jpeg.avif       26.55 kB │ -79.83 % │   Cache
+   - dist/img/test-Dx-WGgb6.jpeg            45.62 kB │ -65.34 % │   Cache
+   - dist/img/test-Dx-WGgb6.jpeg.avif       26.55 kB │ -79.83 % │   Cache
 
 1.  模块联邦
 - 功能：实现微前端架构
