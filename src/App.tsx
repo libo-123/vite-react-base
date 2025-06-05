@@ -27,6 +27,11 @@ const App = () => {
   const { setUserInfo } = useUserStore();
   const [primary, setPrimary] = useState("#ff553c");
 
+  const fun = () => {
+    console.log("这是一条pr-bug测试语句");
+  }
+  fun()
+
   const { loading } = useRequest(getUserInfo, {
     onSuccess: res => setUserInfo(res.data),
     manual: false, //主动执行
